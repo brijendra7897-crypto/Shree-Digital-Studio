@@ -331,89 +331,6 @@ font-size:40px;
 </style>
 </head>
 <body>
-<!-- PREMIUM BOOKING -->
-<section class="luxury-booking" id="booking">
-
-  <div class="booking-heading">
-    <span>SHREE DIGITAL STUDIO</span>
-    <h2>Book Your <b>Dream Package</b></h2>
-    <p>Choose your package and send your booking request on WhatsApp</p>
-  </div>
-
-  <div class="package-cards">
-
-    <div class="package-card">
-      <div class="package-icon">🥈</div>
-      <h3>Silver</h3>
-      <div class="price">₹22,999</div>
-      <p>Perfect Wedding Coverage</p>
-    </div>
-
-    <div class="package-card popular">
-      <div class="popular-badge">POPULAR</div>
-      <div class="package-icon">🥇</div>
-      <h3>Gold</h3>
-      <div class="price">₹49,999</div>
-      <p>Complete Wedding Experience</p>
-    </div>
-
-    <div class="package-card royal-card">
-      <div class="package-icon">👑</div>
-      <h3>Royal</h3>
-      <div class="price">₹84,999</div>
-      <p>Luxury Wedding Experience</p>
-    </div>
-
-  </div>
-
-  <div class="booking-box">
-
-    <h3>📸 Booking Details</h3>
-
-    <p class="advance">
-      Minimum Advance: <strong>₹3,000</strong>
-    </p>
-
-    <form id="bookingForm">
-
-      <input type="text"
-             id="customerName"
-             placeholder="👤 Your Name"
-             required>
-
-      <input type="tel"
-             id="customerPhone"
-             placeholder="📞 Mobile Number"
-             maxlength="10"
-             pattern="[0-9]{10}"
-             required>
-
-      <select id="packageName" required>
-        <option value="">📦 Select Your Package</option>
-
-        <option value="₹22,999 - Silver Package">
-          Silver — ₹22,999
-        </option>
-
-        <option value="₹49,999 - Gold Package">
-          Gold — ₹49,999
-        </option>
-
-        <option value="₹84,999 - Royal Package">
-          Royal — ₹84,999
-        </option>
-      </select>
-
-      <input type="date"
-             id="eventDate"
-             required>
-
-      <button type="submit" class="whatsapp-book">
-        💬 Book Now on WhatsApp
-      </button>
-
-    </form>
-
   </div>
 
 </section>
@@ -641,7 +558,6 @@ Book Now
     </iframe>
   </div>
 </section>
-
 <!-- PREMIUM BOOKING -->
 <section class="luxury-booking" id="booking">
 
@@ -724,9 +640,30 @@ Book Now
       </button>
 
     </form>
+    <script>
+document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-  </div>
+    const name = document.getElementById("customerName").value;
+    const phone = document.getElementById("customerPhone").value;
+    const packageName = document.getElementById("packageName").value;
+    const date = document.getElementById("eventDate").value;
 
+    const message =
+        "📸 SHREE DIGITAL STUDIO MAHROUNI\n\n" +
+        "🔔 New Booking Request\n\n" +
+        "👤 Name: " + name + "\n" +
+        "📞 Mobile: " + phone + "\n" +
+        "📦 Package: " + packageName + "\n" +
+        "📅 Event Date: " + date + "\n\n" +
+        "💰 Minimum Advance: ₹3,000";
+
+    window.open(
+        "https://wa.me/919369194438?text=" + encodeURIComponent(message),
+        "_blank"
+    );
+});
+</script>
 </section>
 
 <!-- CONTACT -->
