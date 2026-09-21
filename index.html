@@ -725,7 +725,113 @@ document.querySelectorAll('.gallery img').forEach((img, index) => {
 
     img.parentNode.insertBefore(box, img);
     box.appendChild(img);
+img.style.cursor = "zoom-in";
 
+img.addEventListener("click", function () {
+
+  let currentIndex = index;
+
+  const popup = document.createElement("div");
+
+  popup.style.cssText = `
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.95);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:99999;
+  `;
+
+  const bigImage = document.createElement("img");
+
+  bigImage.style.cssText = `
+    max-width:85%;
+    max-height:85%;
+    object-fit:contain;
+    border-radius:10px;
+  `;
+
+  const close = document.createElement("button");
+  close.innerHTML = "✕";
+  close.style.cssText = `
+    position:absolute;
+    top:20px;
+    right:20px;
+    font-size:28px;
+    background:#222;
+    color:white;
+    border:0;
+    border-radius:50%;
+    width:50px;
+    height:50px;
+  `;
+
+  const prev = document.createElement("button");
+  prev.innerHTML = "❮";
+  prev.style.cssText = `
+    position:absolute;
+    left:15px;
+    font-size:35px;
+    background:#222;
+    color:white;
+    border:0;
+    border-radius:50%;
+    width:55px;
+    height:55px;
+  `;
+
+  const next = document.createElement("button");
+  next.innerHTML = "❯";
+  next.style.cssText = `
+    position:absolute;
+    right:15px;
+    font-size:35px;
+    background:#222;
+    color:white;
+    border:0;
+    border-radius:50%;
+    width:55px;
+    height:55px;
+  `;
+
+  function showImage() {
+    const images = document.querySelectorAll(".gallery img");
+    bigImage.src = images[currentIndex].src;
+  }
+
+  prev.onclick = function(e) {
+    e.stopPropagation();
+    currentIndex =
+      (currentIndex - 1 + document.querySelectorAll(".gallery img").length)
+      % document.querySelectorAll(".gallery img").length;
+    showImage();
+  };
+
+  next.onclick = function(e) {
+    e.stopPropagation();
+    currentIndex =
+      (currentIndex + 1) %
+      document.querySelectorAll(".gallery img").length;
+    showImage();
+  };
+
+  close.onclick = function() {
+    popup.remove();
+  };
+
+  popup.appendChild(bigImage);
+  popup.appendChild(close);
+  popup.appendChild(prev);
+  popup.appendChild(next);
+
+  document.body.appendChild(popup);
+
+  showImage();
+});
     const buttons = document.createElement('div');
     buttons.style.marginTop = '8px';
 
