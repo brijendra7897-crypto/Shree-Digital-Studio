@@ -12,39 +12,89 @@
             margin: 0;
             padding: 0;
         }
-body {
-    font-family: Arial, sans-serif;
-    background: #fff;
-    color: #222;
-}
 
-header {
-    background: #fff;
-    color: #222;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+        }
 
-header h1 {
-    color: #b8860b;
-}
+        header {
+            padding: 20px;
+            text-align: center;
+            background: #000;
+        }
 
-.btn {
-    background: #b8860b;
-    color: #fff;
-}
+        header h1 {
+            color: #d4af37;
+            font-size: 32px;
+        }
 
-.package {
-    background: #f8f5ee;
-    color: #222;
-}
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(#0008,#0008),
+                        url("https://images.unsplash.com/photo-1519741497674-611481863552")
+                        center/cover;
+        }
 
-.package h3 {
-    color: #b8860b;
-}
+        .hero h2 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
 
-footer {
-    background: #222;
-    color: #fff;
-}
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 25px;
+            background: #d4af37;
+            color: #000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        .package {
+            background: #1c1c1c;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .package h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 28px;
+            margin: 15px;
+        }
+
+        footer {
+            padding: 30px;
+            text-align: center;
+            background: #000;
         }
     </style>
 </head>
@@ -86,24 +136,26 @@ footer {
             <br>
 
             <a class="btn" href="#booking">
-                Book Now"  href="https://wa.me/9369194438">
+                Book Now
             </a>
         </div>
 
         <div class="package">
             <h3>Gold Package</h3>
 
-            <div class="price">₹35,000</div>
+            <div class="price">₹49,000</div>
 
             <p>✓ 2 Photographers</p>
             <p>✓ Cinematic Video</p>
             <p>✓ Drone</p>
             <p>✓ Wedding Album</p>
+            <p>✓ LUSH COMBO </p>
+
 
             <br>
 
             <a class="btn" href="#booking">
-                Book Now" href="https://wa.me/9369194438">
+                Book Now 9369194438
             </a>
         </div>
 
@@ -114,13 +166,19 @@ footer {
 
             <p>✓ Premium Photography</p>
             <p>✓ Cinematic Film</p>
-            <p>✓ Drone</p>
+            <p>✓ Pre Wedding</p>
             <p>✓ Premium Album</p>
+            <p>✓ LUSH COMBO</p>
+            <p>✓ Insta Reels</p>
+            <p>✓ Drone</p>
+
+
+
 
             <br>
 
             <a class="btn" href="#booking">
-                Book Now" href="https://wa.me/9369194438">
+                Book Now 
             </a>
         </div>
 
@@ -151,4 +209,3 @@ footer {
 
 </body>
 </html>
-
