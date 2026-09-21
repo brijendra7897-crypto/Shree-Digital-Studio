@@ -19,6 +19,177 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 <title>Shree Digital Studio Mahrouni | Wedding Photography</title>
 
 <style>
+/* PREMIUM BOOKING DESIGN */
+
+.luxury-booking {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 45px 20px;
+  background: linear-gradient(145deg,#090909,#181818);
+  border-radius: 28px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4);
+}
+
+.booking-heading span {
+  color: #d6b36a;
+  letter-spacing: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.booking-heading h2 {
+  font-size: 38px;
+  margin: 12px 0;
+}
+
+.booking-heading h2 b {
+  color: #d6b36a;
+}
+
+.booking-heading p {
+  color: #aaa;
+  margin-bottom: 35px;
+}
+
+/* PACKAGE CARDS */
+
+.package-cards {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 18px;
+  margin-bottom: 35px;
+}
+
+.package-card {
+  position: relative;
+  padding: 28px 15px;
+  border: 1px solid #333;
+  border-radius: 18px;
+  background: #111;
+  transition: .3s;
+}
+
+.package-card:hover {
+  transform: translateY(-7px);
+  border-color: #d6b36a;
+}
+
+.package-icon {
+  font-size: 35px;
+}
+
+.package-card h3 {
+  margin: 10px 0;
+  font-size: 22px;
+}
+
+.price {
+  color: #d6b36a;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.package-card p {
+  color: #999;
+  font-size: 14px;
+}
+
+.popular {
+  border: 1px solid #d6b36a;
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #d6b36a;
+  color: #111;
+  padding: 5px 18px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.royal-card {
+  background: linear-gradient(145deg,#17130b,#111);
+}
+
+/* BOOKING FORM */
+
+.booking-box {
+  max-width: 600px;
+  margin: auto;
+  padding: 30px;
+  background: #0d0d0d;
+  border: 1px solid #292929;
+  border-radius: 22px;
+}
+
+.booking-box h3 {
+  font-size: 24px;
+  margin-top: 0;
+}
+
+.advance {
+  color: #aaa;
+}
+
+.advance strong {
+  color: #d6b36a;
+  font-size: 20px;
+}
+
+.booking-box input,
+.booking-box select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  margin: 7px 0;
+  border-radius: 10px;
+  border: 1px solid #444;
+  background: #181818;
+  color: white;
+  font-size: 15px;
+}
+
+.whatsapp-book {
+  width: 100%;
+  margin-top: 15px;
+  padding: 16px;
+  border: none;
+  border-radius: 30px;
+  background: #25D366;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.booking-box small {
+  display: block;
+  color: #777;
+  margin-top: 12px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+  .booking-heading h2 {
+    font-size: 29px;
+  }
+
+  .package-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-box {
+    padding: 22px 15px;
+  }
+}
 .social-icons {
   display: flex;
   justify-content: center;
@@ -331,7 +502,92 @@ font-size:40px;
 </style>
 </head>
 <body>
+<!-- PREMIUM BOOKING -->
+<section class="luxury-booking" id="booking">
 
+  <div class="booking-heading">
+    <span>SHREE DIGITAL STUDIO</span>
+    <h2>Book Your <b>Dream Package</b></h2>
+    <p>Choose your package and send your booking request on WhatsApp</p>
+  </div>
+
+  <div class="package-cards">
+
+    <div class="package-card">
+      <div class="package-icon">🥈</div>
+      <h3>Silver</h3>
+      <div class="price">₹22,999</div>
+      <p>Perfect Wedding Coverage</p>
+    </div>
+
+    <div class="package-card popular">
+      <div class="popular-badge">POPULAR</div>
+      <div class="package-icon">🥇</div>
+      <h3>Gold</h3>
+      <div class="price">₹49,999</div>
+      <p>Complete Wedding Experience</p>
+    </div>
+
+    <div class="package-card royal-card">
+      <div class="package-icon">👑</div>
+      <h3>Royal</h3>
+      <div class="price">₹84,999</div>
+      <p>Luxury Wedding Experience</p>
+    </div>
+
+  </div>
+
+  <div class="booking-box">
+
+    <h3>📸 Booking Details</h3>
+
+    <p class="advance">
+      Minimum Advance: <strong>₹3,000</strong>
+    </p>
+
+    <form id="bookingForm">
+
+      <input type="text"
+             id="customerName"
+             placeholder="👤 Your Name"
+             required>
+
+      <input type="tel"
+             id="customerPhone"
+             placeholder="📞 Mobile Number"
+             maxlength="10"
+             pattern="[0-9]{10}"
+             required>
+
+      <select id="packageName" required>
+        <option value="">📦 Select Your Package</option>
+
+        <option value="₹22,999 - Silver Package">
+          Silver — ₹22,999
+        </option>
+
+        <option value="₹49,999 - Gold Package">
+          Gold — ₹49,999
+        </option>
+
+        <option value="₹84,999 - Royal Package">
+          Royal — ₹84,999
+        </option>
+      </select>
+
+      <input type="date"
+             id="eventDate"
+             required>
+
+      <button type="submit" class="whatsapp-book">
+        💬 Book Now on WhatsApp
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
 <header>
 
 <div class="logo">
@@ -557,24 +813,91 @@ Book Now
   </div>
 </section>
 
-<!-- BOOKING -->
+<!-- PREMIUM BOOKING -->
+<section class="luxury-booking" id="booking">
 
-<section class="booking" id="booking">
+  <div class="booking-heading">
+    <span>SHREE DIGITAL STUDIO</span>
+    <h2>Book Your <b>Dream Package</b></h2>
+    <p>Choose your package and send your booking request on WhatsApp</p>
+  </div>
 
-<h2>Book Your Special Day</h2>
+  <div class="package-cards">
 
-<p>
-Let Shree Digital Studio capture your unforgettable moments.
-</p>
+    <div class="package-card">
+      <div class="package-icon">🥈</div>
+      <h3>Silver</h3>
+      <div class="price">₹22,999</div>
+      <p>Perfect Wedding Coverage</p>
+    </div>
 
-<br>
+    <div class="package-card popular">
+      <div class="popular-badge">POPULAR</div>
+      <div class="package-icon">🥇</div>
+      <h3>Gold</h3>
+      <div class="price">₹49,999</div>
+      <p>Complete Wedding Experience</p>
+    </div>
 
-<a class="btn"
-href="https://wa.me/9369194438">
+    <div class="package-card royal-card">
+      <div class="package-icon">👑</div>
+      <h3>Royal</h3>
+      <div class="price">₹84,999</div>
+      <p>Luxury Wedding Experience</p>
+    </div>
 
-📱 WhatsApp Booking
+  </div>
 
-</a>
+  <div class="booking-box">
+
+    <h3>📸 Booking Details</h3>
+
+    <p class="advance">
+      Minimum Advance: <strong>₹3,000</strong>
+    </p>
+
+    <form id="bookingForm">
+
+      <input type="text"
+             id="customerName"
+             placeholder="👤 Your Name"
+             required>
+
+      <input type="tel"
+             id="customerPhone"
+             placeholder="📞 Mobile Number"
+             maxlength="10"
+             pattern="[0-9]{10}"
+             required>
+
+      <select id="packageName" required>
+        <option value="">📦 Select Your Package</option>
+
+        <option value="₹22,999 - Silver Package">
+          Silver — ₹22,999
+        </option>
+
+        <option value="₹49,999 - Gold Package">
+          Gold — ₹49,999
+        </option>
+
+        <option value="₹84,999 - Royal Package">
+          Royal — ₹84,999
+        </option>
+      </select>
+
+      <input type="date"
+             id="eventDate"
+             required>
+
+      <button type="submit" class="whatsapp-book">
+        💬 Book Now on WhatsApp
+      </button>
+
+    </form>
+
+  </div>
+
 </section>
 
 <!-- CONTACT -->
