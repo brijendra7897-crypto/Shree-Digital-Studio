@@ -943,29 +943,26 @@ function sharePhoto(index) {
        placeholder="📍 Event Location"
        required>
 
-<select id="packageName" required> 
-      <select id="packageName" required>
-        <option value="">📦 Select Your Package</option>
+<select id="packageName" required>
+  <option value=""> Select Your Package</option>
+  <option value="₹22,999 - Silver Package">
+  Silver - ₹22,999
+  </option>
+  <option value="₹49,999 - Gold Package">
+  Gold - ₹49,999
+  </option>
+  <option value="₹84,999 - Royal Package" >
+Royal - ₹84,999
+  </option>
+</select>
+      
+<input type="date"
+id="eventDate"
+required>
+      
+<button type="submit" class="whatsapp -book">
+  💬  Book Now on WhatsApp
 
-        <option value="₹22,999 - Silver Package">
-          Silver — ₹22,999
-        </option>
-
-        <option value="₹49,999 - Gold Package">
-          Gold — ₹49,999
-        </option>
-
-        <option value="₹84,999 - Royal Package">
-          Royal — ₹84,999
-        </option>
-      </select>
-
-      <input type="date"
-             id="eventDate"
-             required>
-
-      <button type="submit" class="whatsapp-book">
-        💬 Book Now on WhatsApp
       </button>
 
     </form>
