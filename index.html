@@ -927,18 +927,19 @@ function sharePhoto(index) {
 
     <form id="bookingForm">
 
-      <input type="text"
-             id="customerName"
-             placeholder="👤 Your Name"
-             required>
-
       <input type="tel"
-             id="customerPhone"
-             placeholder="📞 Mobile Number"
-             maxlength="10"
-             pattern="[0-9]{10}"
-             required>
+       id="customerPhone"
+       placeholder="📱 Mobile Number"
+       maxlength="10"
+       pattern="[0-9]{10}"
+       required>
 
+<input type="text"
+       id="eventLocation"
+       placeholder="📍 Event Location"
+       required>
+
+<select id="packageName" required> 
       <select id="packageName" required>
         <option value="">📦 Select Your Package</option>
 
