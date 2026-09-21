@@ -902,6 +902,34 @@ document.getElementById("bookingForm").addEventListener("submit", function(e) {
 
 
 </div>
+<div class="feedback-box">
+  <h3>💬 Give Us Your Feedback</h3>
+
+  <input type="text" id="feedbackName" placeholder="Your Name">
+
+  <textarea id="feedbackMessage" placeholder="Write your feedback..." rows="4"></textarea>
+
+  <button onclick="sendFeedback()">📩 Send Feedback</button>
+</div>
+
+<script>
+function sendFeedback() {
+  const name = document.getElementById("feedbackName").value;
+  const message = document.getElementById("feedbackMessage").value;
+
+  if (!name || !message) {
+    alert("Please enter your name and feedback.");
+    return;
+  }
+
+  const text = `Feedback from Shree Digital Studio Website%0AName: ${name}%0AFeedback: ${message}`;
+
+  window.open(
+    "https://wa.me/919369194438?text=" + text,
+    "_blank"
+  );
+}
+</script>
 <!-- Social Media Icons -->
 <div class="social-icons">
 
