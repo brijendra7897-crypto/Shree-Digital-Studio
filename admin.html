@@ -3,10 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Invitation Editor</title>
+
+<title>Shree Digital Studio - Wedding Invitation Editor</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
   font-family:Arial,sans-serif;
@@ -54,6 +59,23 @@ input{
   font-size:16px;
 }
 
+input[type="file"]{
+  padding:12px;
+}
+
+.preview{
+  display:none;
+  margin-top:15px;
+  text-align:center;
+}
+
+.preview img{
+  max-width:100%;
+  max-height:350px;
+  border-radius:15px;
+  border:2px solid #d6ad45;
+}
+
 button{
   width:100%;
   margin-top:25px;
@@ -71,6 +93,11 @@ button:hover{
   background:#f0d477;
 }
 
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
 .result{
   margin-top:25px;
   padding:20px;
@@ -84,6 +111,13 @@ button:hover{
   color:#e8c66a;
   margin:15px 0;
 }
+
+.progress{
+  display:none;
+  margin-top:15px;
+  text-align:center;
+  color:#e8c66a;
+}
 </style>
 </head>
 
@@ -94,7 +128,7 @@ button:hover{
 <h1>💍 Wedding Invitation Editor</h1>
 
 <p class="subtitle">
-Create your beautiful wedding invitation
+Shree Digital Studio
 </p>
 
 <label>🤵 Groom Name</label>
@@ -115,10 +149,29 @@ Create your beautiful wedding invitation
 <label>📱 WhatsApp Number</label>
 <input id="phone" placeholder="919876543210">
 
-<label>🖼️ Couple Photo URL</label>
-<input id="photo" placeholder="https://example.com/photo.jpg">
+<label>🖼️ Couple Photo Upload</label>
 
-<button onclick="generateInvitation()">
+<input
+  type="file"
+  id="photoFile"
+  accept="image/*"
+>
+
+<div class="preview" id="preview">
+
+<p style="color:#e8c66a;margin-bottom:10px;">
+📸 Photo Preview
+</p>
+
+<img id="previewImage">
+
+</div>
+
+<div class="progress" id="progress">
+⏳ Please wait...
+</div>
+
+<button id="generateBtn" onclick="generateInvitation()">
 ✨ Generate Wedding Invitation
 </button>
 
@@ -136,66 +189,378 @@ Create your beautiful wedding invitation
 💍 Open Invitation
 </button>
 
-</div>
+<button onclick="shareInvitation()">
+📲 Share Invitation
+</button>
 
 </div>
 
-<script>
+</div>
+
+
+<script type="module">
+
+/*
+====================================================
+🔥 FIREBASE CONFIG
+====================================================
+
+Firebase Console से अपना config यहाँ paste करें.
+====================================================
+*/
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-storage.js";
+
+
+const firebaseConfig = {
+
+  apiKey: "YOUR_API_KEY",
+
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+
+  projectId: "YOUR_PROJECT_ID",
+
+  storageBucket: "YOUR_PROJECT.firebasestorage.app",
+
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+
+  appId: "YOUR_APP_ID"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const storage = getStorage(app);
+
+
+/*
+====================================================
+PHOTO PREVIEW
+====================================================
+*/
+
+const photoFile =
+document.getElementById("photoFile");
+
+const preview =
+document.getElementById("preview");
+
+const previewImage =
+document.getElementById("previewImage");
+
+
+photoFile.addEventListener("change",function(){
+
+  const file=this.files[0];
+
+  if(!file){
+
+    preview.style.display="none";
+
+    return;
+  }
+
+
+  if(!file.type.startsWith("image/")){
+
+    alert("Please select an image.");
+
+    this.value="";
+
+    preview.style.display="none";
+
+    return;
+  }
+
+
+  if(file.size > 10 * 1024 * 1024){
+
+    alert("Photo maximum 10 MB ki honi chahiye.");
+
+    this.value="";
+
+    preview.style.display="none";
+
+    return;
+  }
+
+
+  const reader=new FileReader();
+
+
+  reader.onload=function(e){
+
+    previewImage.src=e.target.result;
+
+    preview.style.display="block";
+
+  };
+
+
+  reader.readAsDataURL(file);
+
+});
+
+
+/*
+====================================================
+GENERATE INVITATION
+====================================================
+*/
 
 let finalLink="";
 
-function generateInvitation(){
 
-const groom=document.getElementById("groom").value.trim();
-const bride=document.getElementById("bride").value.trim();
-const date=document.getElementById("date").value.trim();
-const time=document.getElementById("time").value.trim();
-const venue=document.getElementById("venue").value.trim();
-const phone=document.getElementById("phone").value.trim();
-const photo=document.getElementById("photo").value.trim();
+window.generateInvitation=async function(){
 
-if(!groom || !bride || !date || !time || !venue){
+  const groom=
+  document.getElementById("groom").value.trim();
 
-alert("Please fill all required details.");
+  const bride=
+  document.getElementById("bride").value.trim();
 
-return;
-}
+  const date=
+  document.getElementById("date").value.trim();
 
-const baseURL =
-window.location.origin +
-window.location.pathname.replace("admin.html","invitation.html");
+  const time=
+  document.getElementById("time").value.trim();
 
-const params=new URLSearchParams();
+  const venue=
+  document.getElementById("venue").value.trim();
 
-params.set("groom",groom);
-params.set("bride",bride);
-params.set("date",date);
-params.set("time",time);
-params.set("venue",venue);
-params.set("phone",phone);
-params.set("photo",photo);
+  const phone=
+  document.getElementById("phone").value.trim();
 
-finalLink=baseURL+"?"+params.toString();
+  const file=
+  document.getElementById("photoFile").files[0];
 
-document.getElementById("generatedLink").textContent=finalLink;
 
-document.getElementById("result").style.display="block";
+  if(!groom || !bride || !date || !time || !venue){
 
-}
+    alert("Please fill all required details.");
 
-function copyLink(){
+    return;
+  }
 
-navigator.clipboard.writeText(finalLink);
 
-alert("Invitation link copied!");
+  if(!file){
 
-}
+    alert("Please select Couple Photo.");
 
-function openInvitation(){
+    return;
+  }
 
-window.open(finalLink,"_blank");
 
-}
+  const button=
+  document.getElementById("generateBtn");
+
+  button.disabled=true;
+
+  button.textContent="⏳ Uploading Photo...";
+
+
+  document.getElementById("progress")
+  .style.display="block";
+
+
+  try{
+
+    /*
+    ================================================
+    UNIQUE PHOTO NAME
+    ================================================
+    */
+
+    const fileName=
+      Date.now()+"_"+
+      Math.random().toString(36).substring(2,8)+"_"+
+      file.name;
+
+
+    /*
+    ================================================
+    FIREBASE STORAGE
+    ================================================
+    */
+
+    const storageRef=
+      ref(
+        storage,
+        "wedding-photos/"+fileName
+      );
+
+
+    await uploadBytes(storageRef,file);
+
+
+    /*
+    ================================================
+    GET ONLINE PHOTO URL
+    ================================================
+    */
+
+    const photoURL=
+      await getDownloadURL(storageRef);
+
+
+    /*
+    ================================================
+    INVITATION URL
+    ================================================
+    */
+
+    const baseURL=
+      window.location.origin+
+      window.location.pathname
+      .replace("admin.html","invitation.html");
+
+
+    const params=
+    new URLSearchParams();
+
+
+    params.set("groom",groom);
+
+    params.set("bride",bride);
+
+    params.set("date",date);
+
+    params.set("time",time);
+
+    params.set("venue",venue);
+
+    params.set("phone",phone);
+
+    params.set("photo",photoURL);
+
+
+    finalLink=
+      baseURL+"?"+params.toString();
+
+
+    document.getElementById("generatedLink")
+    .textContent=finalLink;
+
+
+    document.getElementById("result")
+    .style.display="block";
+
+
+    document.getElementById("progress")
+    .textContent=
+    "✅ Photo upload successfully complete!";
+
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    alert(
+      "❌ Photo upload nahi hui.\n\n"+
+      "Firebase Config aur Storage Rules check karein."
+    );
+
+  }
+
+
+  button.disabled=false;
+
+  button.textContent=
+  "✨ Generate Wedding Invitation";
+
+};
+
+
+/*
+====================================================
+COPY LINK
+====================================================
+*/
+
+window.copyLink=function(){
+
+  if(!finalLink) return;
+
+  navigator.clipboard.writeText(finalLink);
+
+  alert("✅ Invitation link copied!");
+
+};
+
+
+/*
+====================================================
+OPEN INVITATION
+====================================================
+*/
+
+window.openInvitation=function(){
+
+  if(!finalLink) return;
+
+  window.open(finalLink,"_blank");
+
+};
+
+
+/*
+====================================================
+SHARE INVITATION
+====================================================
+*/
+
+window.shareInvitation=async function(){
+
+  if(!finalLink) return;
+
+
+  if(navigator.share){
+
+    try{
+
+      await navigator.share({
+
+        title:
+        "Wedding Invitation - Shree Digital Studio",
+
+        text:
+        "💍 You are invited to our wedding!",
+
+        url:finalLink
+
+      });
+
+    }
+
+    catch(error){
+
+      console.log(error);
+
+    }
+
+  }
+
+  else{
+
+    navigator.clipboard.writeText(finalLink);
+
+    alert("Invitation link copied!");
+
+  }
+
+};
 
 </script>
 
