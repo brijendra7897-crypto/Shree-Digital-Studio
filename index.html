@@ -18,7 +18,579 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 <link rel="canonical" href="https://brijendra7897-crypto.github.io/Shree-Digital-Studio/">
 <title>Shree Digital Studio Mahrouni | Wedding Photography</title>
 
-<style> 
+<style> <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Wedding Invitation Maker</title>
+
+<!-- Download Image Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f4f1ed;
+  color:#333;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+h1{
+  text-align:center;
+  color:#8b5e34;
+  margin-bottom:25px;
+}
+
+.main{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+.form-box,
+.preview-box{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,.12);
+}
+
+.form-box h2,
+.preview-box h2{
+  margin-top:0;
+  color:#8b5e34;
+}
+
+label{
+  display:block;
+  margin-top:13px;
+  margin-bottom:6px;
+  font-weight:bold;
+}
+
+input,
+textarea{
+  width:100%;
+  padding:11px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:15px;
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+button{
+  border:0;
+  padding:12px 18px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:15px;
+  margin-top:15px;
+  margin-right:7px;
+}
+
+.update{
+  background:#8b5e34;
+  color:white;
+}
+
+.whatsapp{
+  background:#25D366;
+  color:white;
+}
+
+.download{
+  background:#222;
+  color:white;
+}
+
+/* INVITATION CARD */
+
+.invitation{
+  width:100%;
+  max-width:480px;
+  min-height:650px;
+  margin:auto;
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  background:
+    radial-gradient(circle at top left, rgba(212,175,55,.20), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(139,94,52,.18), transparent 30%),
+    #fffaf0;
+  border:8px solid #d4af37;
+  border-radius:12px;
+}
+
+.invitation:before{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border:2px solid #d4af37;
+  pointer-events:none;
+}
+
+.inner{
+  position:relative;
+  z-index:2;
+}
+
+.top-text{
+  font-size:17px;
+  color:#8b5e34;
+  margin-top:5px;
+}
+
+.symbol{
+  font-size:45px;
+  margin:10px 0;
+}
+
+.title{
+  font-family:Georgia, serif;
+  font-size:30px;
+  color:#8b5e34;
+  margin:5px 0;
+}
+
+.subtitle{
+  font-size:16px;
+  color:#777;
+}
+
+.couple-photo{
+  width:170px;
+  height:170px;
+  border-radius:50%;
+  object-fit:cover;
+  border:6px solid #d4af37;
+  margin:15px auto;
+  display:block;
+  background:#eee;
+}
+
+.names{
+  font-family:Georgia, serif;
+  font-size:30px;
+  color:#6f421f;
+  font-weight:bold;
+  line-height:1.25;
+}
+
+.and{
+  font-size:20px;
+  color:#d4af37;
+  margin:5px;
+}
+
+.details{
+  margin-top:15px;
+  font-size:16px;
+  line-height:1.7;
+}
+
+.message{
+  margin:15px auto;
+  max-width:390px;
+  font-size:14px;
+  line-height:1.6;
+  color:#555;
+}
+
+.location{
+  font-weight:bold;
+  color:#6f421f;
+}
+
+.footer{
+  margin-top:15px;
+  font-size:14px;
+  color:#8b5e34;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+  .main{
+    grid-template-columns:1fr;
+  }
+
+  .invitation{
+    max-width:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💌 Online Wedding Invitation Maker</h1>
+
+<div class="main">
+
+<!-- FORM -->
+<div class="form-box">
+
+<h2>Enter Wedding Details</h2>
+
+<label>Groom Name</label>
+<input type="text" id="groom" placeholder="Enter Groom Name">
+
+<label>Bride Name</label>
+<input type="text" id="bride" placeholder="Enter Bride Name">
+
+<label>Wedding Date</label>
+<input type="date" id="date">
+
+<label>Wedding Time</label>
+<input type="time" id="time">
+
+<label>Wedding Location</label>
+<input type="text" id="location" placeholder="Enter Wedding Venue">
+
+<label>Wedding Message</label>
+<textarea id="message"
+placeholder="We invite you to celebrate our special day with us..."></textarea>
+
+<label>Couple Photo</label>
+<input type="file" id="photo" accept="image/*">
+
+<button class="update" onclick="updateInvitation()">
+Update Invitation
+</button>
+
+<button class="download" onclick="downloadInvitation()">
+📥 Download
+</button>
+
+<button class="whatsapp" onclick="shareWhatsApp()">
+📲 WhatsApp Share
+</button>
+
+</div>
+
+
+<!-- PREVIEW -->
+<div class="preview-box">
+
+<h2>Live Preview</h2>
+
+<div id="invitation" class="invitation">
+
+<div class="inner">
+
+<div class="top-text">
+Together with their families
+</div>
+
+<div class="symbol">
+💐
+</div>
+
+<div class="title">
+Wedding Invitation
+</div>
+
+<div class="subtitle">
+You are cordially invited to celebrate
+</div>
+
+<img
+id="previewPhoto"
+class="couple-photo"
+src="https://via.placeholder.com/300x300.png?text=Couple+Photo"
+alt="Couple Photo"
+>
+
+<div class="names">
+<span id="previewGroom">Groom Name</span>
+
+<div class="and">
+&
+
+</div>
+
+<span id="previewBride">Bride Name</span>
+</div>
+
+<div class="details">
+
+<div>
+📅 <span id="previewDate">Wedding Date</span>
+</div>
+
+<div>
+⏰ <span id="previewTime">Wedding Time</span>
+</div>
+
+<div class="location">
+📍 <span id="previewLocation">Wedding Location</span>
+</div>
+
+</div>
+
+<div class="message" id="previewMessage">
+We invite you to celebrate our special day with us.
+Your presence and blessings will make our wedding
+even more memorable.
+</div>
+
+<div class="footer">
+With Love & Blessings ❤️
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<script>
+
+/* PHOTO PREVIEW */
+
+document.getElementById("photo").addEventListener("change", function(){
+
+  const file = this.files[0];
+
+  if(file){
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+      document.getElementById("previewPhoto").src = e.target.result;
+
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+});
+
+
+/* UPDATE INVITATION */
+
+function updateInvitation(){
+
+  const groom =
+    document.getElementById("groom").value ||
+    "Groom Name";
+
+  const bride =
+    document.getElementById("bride").value ||
+    "Bride Name";
+
+  const date =
+    document.getElementById("date").value;
+
+  const time =
+    document.getElementById("time").value;
+
+  const location =
+    document.getElementById("location").value ||
+    "Wedding Location";
+
+  const message =
+    document.getElementById("message").value ||
+    "We invite you to celebrate our special day with us. Your presence and blessings will make our wedding even more memorable.";
+
+
+  document.getElementById("previewGroom").innerText =
+    groom;
+
+  document.getElementById("previewBride").innerText =
+    bride;
+
+  document.getElementById("previewLocation").innerText =
+    location;
+
+  document.getElementById("previewMessage").innerText =
+    message;
+
+
+  /* FORMAT DATE */
+
+  if(date){
+
+    const d = new Date(date + "T00:00:00");
+
+    const formattedDate =
+      d.toLocaleDateString("en-IN", {
+        day:"numeric",
+        month:"long",
+        year:"numeric"
+      });
+
+    document.getElementById("previewDate").innerText =
+      formattedDate;
+
+  }else{
+
+    document.getElementById("previewDate").innerText =
+      "Wedding Date";
+
+  }
+
+
+  /* FORMAT TIME */
+
+  if(time){
+
+    const [hours, minutes] = time.split(":");
+
+    const tempDate = new Date();
+
+    tempDate.setHours(hours);
+    tempDate.setMinutes(minutes);
+
+    const formattedTime =
+      tempDate.toLocaleTimeString("en-IN", {
+        hour:"numeric",
+        minute:"2-digit",
+        hour12:true
+      });
+
+    document.getElementById("previewTime").innerText =
+      formattedTime;
+
+  }else{
+
+    document.getElementById("previewTime").innerText =
+      "Wedding Time";
+
+  }
+
+}
+
+
+/* DOWNLOAD INVITATION */
+
+function downloadInvitation(){
+
+  updateInvitation();
+
+  const invitation =
+    document.getElementById("invitation");
+
+  html2canvas(invitation, {
+    scale:3,
+    useCORS:true,
+    backgroundColor:"#fffaf0"
+  }).then(function(canvas){
+
+    const link =
+      document.createElement("a");
+
+    link.download =
+      "Wedding-Invitation.png";
+
+    link.href =
+      canvas.toDataURL("image/png");
+
+    link.click();
+
+  });
+
+}
+
+
+/* WHATSAPP SHARE */
+
+function shareWhatsApp(){
+
+  updateInvitation();
+
+  const groom =
+    document.getElementById("groom").value ||
+    "Groom";
+
+  const bride =
+    document.getElementById("bride").value ||
+    "Bride";
+
+  const location =
+    document.getElementById("location").value ||
+    "Wedding Venue";
+
+  const message =
+    document.getElementById("message").value ||
+    "We invite you to celebrate our special day with us.";
+
+  const date =
+    document.getElementById("previewDate").innerText;
+
+  const time =
+    document.getElementById("previewTime").innerText;
+
+
+  const text =
+`💌 Wedding Invitation 💌
+
+🤵 ${groom}
+&
+👰 ${bride}
+
+📅 ${date}
+⏰ ${time}
+📍 ${location}
+
+${message}
+
+❤️ With Love & Blessings ❤️`;
+
+
+  const whatsappURL =
+    "https://wa.me/?text=" +
+    encodeURIComponent(text);
+
+  window.open(whatsappURL, "_blank");
+
+}
+
+
+/* AUTO UPDATE */
+
+[
+  "groom",
+  "bride",
+  "date",
+  "time",
+  "location",
+  "message"
+].forEach(function(id){
+
+  document.getElementById(id)
+  .addEventListener("input", updateInvitation);
+
+});
+
+</script>
+
+</body>
+</html>
+
 /* PREMIUM BOOKING DESIGN */
 
 .luxury-booking {
@@ -588,7 +1160,11 @@ Professional Photography & Cinematic Services
 <h3>Drone Shoot</h3>
 <p>Stunning aerial wedding photography.</p>
 </div>
-
+<div class="service" onclick="openInvitationMaker()" style="cursor:pointer;">
+  <span>💌</span>
+  <h3>Online Wedding Invitation</h3>
+  <p>Create your beautiful wedding invitation online.</p>
+</div>
 
 
 </div>
