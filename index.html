@@ -1410,19 +1410,21 @@ img.addEventListener("click", function () {
 });
     const buttons = document.createElement('div');
     buttons.style.marginTop = '8px';
-
-   buttons.innerHTML = `
-    <button data-photo-index="${index}"
-    onclick="likePhoto(this)"
-    style="padding:8px 14px;border:0;border-radius:20px;background:#222;color:white;margin:4px;">
-    ❤️ Like <span>0</span>
+buttons.innerHTML = `
+    <button
+        data-photo-index="${index}"
+        onclick="likePhoto(this)"
+        style="padding:8px 14px;border:0;border-radius:20px;background:#222;color:white;margin:4px;">
+        ❤️ Like <span>${localStorage.getItem("photoLike_" + index) || 0}</span>
     </button>
 
-    <button onclick="sharePhoto(${index})"
-    style="padding:8px 14px;border:0;border-radius:20px;background:#222;color:white;margin:4px;">
-    ↗️ Share
+    <button
+        onclick="sharePhoto(${index})"
+        style="padding:8px 14px;border:0;border-radius:20px;background:#222;color:white;margin:4px;">
+        ↗️ Share
     </button>
 `;
+  
 </script>
 </section>
 <section class="video-section">
