@@ -1411,40 +1411,18 @@ img.addEventListener("click", function () {
     const buttons = document.createElement('div');
     buttons.style.marginTop = '8px';
 
-    buttons.innerHTML = `
-        <button onclick="likePhoto(this)"
-        style="padding:8px 14px;border:0;border-radius:20px;background:#222;color:white;margin:4px;">
-        ❤️ Like <span>0</span>
-        </button>
+   buttons.innerHTML = `
+    <button data-photo-index="${index}"
+    onclick="likePhoto(this)"
+    style="padding:8px 14px;border:0;border-radius:20px;background:#222;color:white;margin:4px;">
+    ❤️ Like <span>0</span>
+    </button>
 
-        <button onclick="sharePhoto(${index})"
-        style="padding:8px 14px;border:0;border-radius:20px;background:#222;color:white;margin:4px;">
-        ↗️ Share
-        </button>
-    `;
-
-    box.appendChild(buttons);
-});
-
-function likePhoto(button) {
-    const count = button.querySelector('span');
-    count.textContent = Number(count.textContent) + 1;
-}
-
-function sharePhoto(index) {
-    const img = document.querySelectorAll('.gallery img')[index];
-
-    if (navigator.share) {
-        navigator.share({
-            title: 'Shree Digital Studio Mahrauni',
-            text: 'Beautiful wedding photo by Shree Digital Studio',
-            url: img.src
-        });
-    } else {
-        navigator.clipboard.writeText(img.src);
-        alert('Photo link copied!');
-    }
-}
+    <button onclick="sharePhoto(${index})"
+    style="padding:8px 14px;border:0;border-radius:20px;background:#222;color:white;margin:4px;">
+    ↗️ Share
+    </button>
+`;
 </script>
 </section>
 <section class="video-section">
