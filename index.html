@@ -1414,7 +1414,7 @@ buttons.innerHTML = `
     <button data-photo-index="${index}"
     onclick="likePhoto(this)"
     style="padding:8px 14px;border:0;border-radius:20px;background:#222;color:white;margin:4px;">
-    ❤️ Like <span>0</span>
+    ❤️ Like<span>${localStorage.getItem("photoLike_" + index) || 0}</span>
     </button>
 
     <button onclick="sharePhoto(${index})"
