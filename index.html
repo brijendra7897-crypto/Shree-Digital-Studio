@@ -1572,13 +1572,54 @@ function likePhoto(button) {
 <section class="video-section">
   <h2>Our Wedding Films</h2>
 
+ <div class="video-row">
+
+  <!-- Left Video -->
+  <div class="video-box">
+    <iframe
+      src="https://www.youtube.com/embed/cEsC10aYi-g"
+      title="Manoj Weds Pratibha Wedding Video"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- Right Video / Content -->
   <div class="video-box">
     <iframe
       src="https://www.youtube.com/embed/i24DEHBA4tw"
-       src="https://www.youtube.com/embed/cEsC10aYi-g?autoplay=1&mute=1&loop=1&playlist=cEsC10aYi-g"
       title="Shree Digital Studio Wedding Video"
       allowfullscreen>
-       </iframe>
+    </iframe>
+  </div>
+
+</div>
+
+<style>
+.video-row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.video-box {
+  flex: 1;
+  aspect-ratio: 16 / 9;
+}
+
+.video-box iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 10px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .video-row {
+    flex-direction: column;
+  }
+}
+</style>
  <div class="scrolling-banner">
   <div class="scrolling-content">
     💍 शादी का दिन गुजर जाएगा, लेकिन यादें जिंदगीभर रहेंगी ❤️
