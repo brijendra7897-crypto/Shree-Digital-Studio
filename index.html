@@ -1664,123 +1664,265 @@ function likePhoto(button) {
 }
 </style>
 </section>
-<!-- PREMIUM BOOKING -->
-<section class="luxury-booking" id="booking">
 
-  <div class="booking-heading">
-    <span>SHREE DIGITAL STUDIO</span>
-    <h2>Book Your <b>Dream Package</b></h2>
-    <p>Choose your package and send your booking request on WhatsApp</p>
-  </div>
-
-  <div class="package-cards">
-
-    <div class="package-card">
-      <div class="package-icon">🥈</div>
-      <h3>Silver</h3>
-      <div class="price"></div>
-      <p>Perfect Wedding Coverage</p>
-    </div>
-
-    <div class="package-card popular">
-      <div class="popular-badge">POPULAR</div>
-      <div class="package-icon">🥇</div>
-      <h3>Gold</h3>
-      <div class="price"></div>
-      <p>Complete Wedding Experience</p>
-    </div>
-
-    <div class="package-card royal-card">
-      <div class="package-icon">👑</div>
-      <h3>Royal</h3>
-      <div class="price"></div>
-      <p>Luxury Wedding Experience</p>
-    </div>
-
-  </div>
+    <!-- ================= BOOKING SECTION ================= -->
+<section id="booking" class="booking-section">
 
   <div class="booking-box">
 
-    <h3>📸 Booking Details</h3>
-
-    <p class="advance">
-      Minimum Advance: <strong></strong>
+    <h2>📸 Booking Details</h2>
+    <p class="advance-text">
+      Minimum Advance: <strong>₹3,000</strong>
     </p>
 
     <form id="bookingForm">
 
-<input type="text"
-       id="customerName"
-       placeholder="Q Your Name"
-       required>
-<input type="tel"
-       id="customer Phone"
-       placeholder=" Mobile Number"
-       maxlength="10"
-       pattern=" [0-9]{10}"
-       required>
+      <!-- Customer Name -->
+      <label>👤 Customer Name</label>
+      <input
+        type="text"
+        id="name"
+        placeholder="Enter your name"
+        required
+      >
 
-<input type="text"
-       id="eventLocation"
-       placeholder="📍 Event Location"
-       required>
+      <!-- Mobile Number -->
+      <label>📞 Mobile Number</label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        placeholder="Enter 10 digit mobile number"
+        inputmode="numeric"
+        pattern="[0-9]{10}"
+        maxlength="10"
+        minlength="10"
+        required
+      >
 
-<select id="packageName" required>
-  <option value=""> Select Your Package</option>
-  <option value=" - Silver Package">
-  Silver -
-  </option>
-  <option value=" - Gold Package">
-  Gold -
-  </option>
-  <option value=" - Royal Package" >
-Royal - 
-  </option>
-</select>
-      
-<input type="date"
-id="eventDate"
-required>
-      
-<button type="submit" class="whatsapp -book">
-  💬  Book Now on WhatsApp
+      <!-- Event Location -->
+      <label>📍 Event Location</label>
+      <input
+        type="text"
+        id="location"
+        placeholder="Enter event location"
+        required
+      >
 
+      <!-- Package -->
+      <label>📦 Select Package</label>
+      <select id="packageName" required>
+        <option value="">Select Package</option>
+        <option value="Silver - ₹22,999">Silver - ₹22,999</option>
+        <option value="Royal - ₹49,999">Royal - ₹49,999</option>
+        <option value="Royal Premium - ₹84,999">Royal Premium - ₹84,999</option>
+      </select>
+
+      <!-- Event Date -->
+      <label>📅 Event Date</label>
+      <input
+        type="date"
+        id="date"
+        required
+      >
+
+      <!-- Payment Status -->
+      <label>💳 Payment Status</label>
+      <select id="paymentStatus" required>
+        <option value="⏳ Advance Pending">
+          ⏳ Advance Pending
+        </option>
+        <option value="✅ Advance Paid">
+          ✅ Advance Paid
+        </option>
+      </select>
+
+      <!-- Customer Message -->
+      <label>💬 Customer Message</label>
+      <textarea
+        id="customerMessage"
+        rows="4"
+        placeholder="Write your requirement..."
+      ></textarea>
+
+      <!-- Submit -->
+      <button type="submit" class="booking-btn">
+        📲 Send Booking Request
       </button>
 
     </form>
-    <script>
-document.getElementById("bookingForm").addEventListener("submit", function(e) {
-    e.preventDefault();
 
-    const name = document.getElementById("customerName").value;
-    const phone = document.getElementById("customerPhone").value;
-    const packageName = document.getElementById("packageName").value;
-    const date = document.getElementById("eventDate").value;
+  </div>
 
-    const message =
-  "📸 *SHREE DIGITAL STUDIO MAHROUNI*\n" +
-  "━━━━━━━━━━━━━━━━━━\n\n" +
-
-  "🔔 *NEW BOOKING REQUEST*\n\n" +
-
-  "🆔 *Booking ID:* " + bookingId + "\n" +
-  "👤 *Customer Name:* " + name + "\n" +
-  "📞 *Mobile Number:* " + phone + "\n" +
-  "📦 *Selected Package:* " + packageName + "\n" +
-  "📅 *Event Date:* " + date + "\n" +
-  "📍 *Event Location:* " + location + "\n\n" +
-
-  "💰 *Minimum Advance:* ₹3,000\n" +
-  "💳 *Payment Status:* " + paymentStatus + "\n\n" +
-
-  "💬 *Customer Message:*\n" +
-  (customerMessage || "No message provided") + "\n\n" +
-
-  "━━━━━━━━━━━━━━━━━━\n" +
-  "🙏 Thank you for choosing\n" +
-  "*Shree Digital Studio Mahrouni* 📸";
 </section>
 
+
+<!-- ================= BOOKING CSS ================= -->
+<style>
+
+.booking-section {
+  padding: 60px 20px;
+  background: #0b0b0b;
+}
+
+.booking-box {
+  max-width: 600px;
+  margin: auto;
+  background: #111;
+  padding: 30px;
+  border-radius: 22px;
+  border: 1px solid #333;
+  box-shadow: 0 0 25px rgba(255, 193, 7, 0.08);
+}
+
+.booking-box h2 {
+  text-align: center;
+  color: #fff;
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.advance-text {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 25px;
+  font-size: 18px;
+}
+
+.advance-text strong {
+  color: #ffc107;
+}
+
+.booking-box label {
+  display: block;
+  color: #fff;
+  font-size: 15px;
+  margin: 15px 0 7px;
+}
+
+.booking-box input,
+.booking-box select,
+.booking-box textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  border-radius: 14px;
+  border: 1px solid #444;
+  background: #1b1b1b;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+}
+
+.booking-box input:focus,
+.booking-box select:focus,
+.booking-box textarea:focus {
+  border-color: #ffc107;
+  box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.15);
+}
+
+.booking-box textarea {
+  resize: vertical;
+}
+
+.booking-btn {
+  width: 100%;
+  margin-top: 25px;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  background: #25D366;
+  color: #fff;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.booking-btn:hover {
+  opacity: 0.9;
+}
+
+</style>
+
+
+<!-- ================= BOOKING JAVASCRIPT ================= -->
+<script>
+
+document.getElementById("bookingForm").addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const location = document.getElementById("location").value.trim();
+  const packageName = document.getElementById("packageName").value;
+  const date = document.getElementById("date").value;
+  const paymentStatus = document.getElementById("paymentStatus").value;
+  const customerMessage =
+    document.getElementById("customerMessage").value.trim();
+
+  // Mobile Number Validation
+  if (!/^[0-9]{10}$/.test(phone)) {
+    alert("Please enter a valid 10 digit mobile number.");
+    return;
+  }
+
+  // Generate Booking ID
+  const bookingId =
+    "SDS-" + Date.now().toString().slice(-6);
+
+  // Convert Date
+  const eventDate = new Date(date);
+
+  const formattedDate =
+    eventDate.toLocaleDateString("en-IN", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    });
+
+  // Customer message
+  const message =
+    "📸 *SHREE DIGITAL STUDIO MAHROUNI*\n" +
+    "━━━━━━━━━━━━━━━━━━\n\n" +
+
+    "🔔 *NEW BOOKING REQUEST*\n\n" +
+
+    "🆔 *Booking ID:* " + bookingId + "\n" +
+    "👤 *Customer Name:* " + name + "\n" +
+    "📞 *Mobile Number:* " + phone + "\n" +
+    "📍 *Event Location:* " + location + "\n" +
+    "📦 *Selected Package:* " + packageName + "\n" +
+    "📅 *Event Date:* " + formattedDate + "\n\n" +
+
+    "💰 *Minimum Advance:* ₹3,000\n" +
+    "💳 *Payment Status:* " + paymentStatus + "\n\n" +
+
+    "💬 *Customer Message:*\n" +
+    (customerMessage || "No message provided") + "\n\n" +
+
+    "━━━━━━━━━━━━━━━━━━\n" +
+    "🙏 Thank you for choosing\n" +
+    "*Shree Digital Studio Mahrouni* 📸";
+
+  // Your WhatsApp Number
+  const whatsappNumber = "919369194438";
+
+  // WhatsApp URL
+  const whatsappURL =
+    "https://wa.me/" +
+    whatsappNumber +
+    "?text=" +
+    encodeURIComponent(message);
+
+  // Open WhatsApp
+  window.open(whatsappURL, "_blank");
+
+});
+
+</script>  
+
+    
 <!-- CONTACT -->
 
 <section class="contact">
