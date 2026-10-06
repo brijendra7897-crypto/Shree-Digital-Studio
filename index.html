@@ -1758,20 +1758,27 @@ document.getElementById("bookingForm").addEventListener("submit", function(e) {
     const date = document.getElementById("eventDate").value;
 
     const message =
-        "📸 SHREE DIGITAL STUDIO MAHROUNI\n\n" +
-        "🔔 New Booking Request\n\n" +
-        "👤 Name: " + name + "\n" +
-        "📞 Mobile: " + phone + "\n" +
-        "📦 Package: " + packageName + "\n" +
-        "📅 Event Date: " + date + "\n\n" +
-        "💰 Minimum Advance: ₹3,000";
+  "📸 *SHREE DIGITAL STUDIO MAHROUNI*\n" +
+  "━━━━━━━━━━━━━━━━━━\n\n" +
 
-    window.open(
-        "https://wa.me/919369194438?text=" + encodeURIComponent(message),
-        "_blank"
-    );
-});
-</script>
+  "🔔 *NEW BOOKING REQUEST*\n\n" +
+
+  "🆔 *Booking ID:* " + bookingId + "\n" +
+  "👤 *Customer Name:* " + name + "\n" +
+  "📞 *Mobile Number:* " + phone + "\n" +
+  "📦 *Selected Package:* " + packageName + "\n" +
+  "📅 *Event Date:* " + date + "\n" +
+  "📍 *Event Location:* " + location + "\n\n" +
+
+  "💰 *Minimum Advance:* ₹3,000\n" +
+  "💳 *Payment Status:* " + paymentStatus + "\n\n" +
+
+  "💬 *Customer Message:*\n" +
+  (customerMessage || "No message provided") + "\n\n" +
+
+  "━━━━━━━━━━━━━━━━━━\n" +
+  "🙏 Thank you for choosing\n" +
+  "*Shree Digital Studio Mahrouni* 📸";
 </section>
 
 <!-- CONTACT -->
