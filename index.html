@@ -1646,6 +1646,7 @@ function likePhoto(button) {
   padding: 10px 0;
   white-space: nowrap;
 }
+
 .scrolling-content {
   display: inline-block;
   padding-left: 100%;
@@ -1654,6 +1655,7 @@ function likePhoto(button) {
   font-size: 16px;
   font-weight: 600;
 }
+
 @keyframes scrollText {
   from {
     transform: translateX(0);
@@ -1663,8 +1665,120 @@ function likePhoto(button) {
   }
 }
 
-  <script>
-  </section>
+/* CONTACT */
+.contact {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.contact .title h2 {
+  color: #d4af37;
+}
+
+.feedback-box {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #111;
+  border: 1px solid #d4af37;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.feedback-box h3 {
+  color: #d4af37;
+  margin-bottom: 20px;
+}
+
+.feedback-box input,
+.feedback-box textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  padding: 12px;
+  border: 1px solid #555;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+}
+
+.feedback-box button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  background: #d4af37;
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.feedback-box button:hover {
+  background: #fff;
+}
+
+/* SOCIAL ICONS */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.social-icons a {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.facebook {
+  background: #1877f2;
+}
+
+.youtube {
+  background: #ff0000;
+}
+
+.instagram {
+  background: #e4405f;
+}
+
+.whatsapp {
+  background: #25d366;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid #d4af37;
+  color: #aaa;
+}
+
+footer span {
+  color: #d4af37;
+}
+</style>
+
+
+<!-- SCROLLING BANNER -->
+<div class="scrolling-banner">
+  <div class="scrolling-content">
+    📸 SHREE DIGITAL STUDIO MAHROUNI &nbsp; | &nbsp;
+    Photography & Videography &nbsp; | &nbsp;
+    📞 +91 9369194438 &nbsp; | &nbsp;
+    💍 Wedding Photography &nbsp; | &nbsp;
+    🎥 Cinematic Video
+  </div>
+</div>
+
+
+<!-- BOOKING FORM SCRIPT -->
+<script>
 document.getElementById("bookingForm").addEventListener("submit", function(event) {
   event.preventDefault();
 
@@ -1675,7 +1789,6 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
   const date = document.getElementById("date").value;
   const customerMessage = document.getElementById("customerMessage").value.trim();
 
-  // WhatsApp Number: +91 9369194438
   const whatsappNumber = "919369194438";
 
   const message = `📸 *SHREE DIGITAL STUDIO*
@@ -1694,83 +1807,134 @@ ${customerMessage || "No message"}
 💰 Minimum Advance: ₹3,000`;
 
   const whatsappURL =
-    "https://wa.me/919369194438?text=" +
+    "https://wa.me/" +
+    whatsappNumber +
+    "?text=" +
     encodeURIComponent(message);
 
   window.open(whatsappURL, "_blank");
 });
 </script>
-<!-- CONTACT -->
 
+
+<!-- CONTACT -->
 <section class="contact">
 
-<div class="title">
+  <div class="title">
+    <h2>Contact Us</h2>
+  </div>
 
-<h2>Contact Us</h2>
+  <p>📞 Mobile: +91 9369194438</p>
 
-</div>
+  <p>📍 Location: Mahrouni, Lalitpur, Uttar Pradesh - 284405</p>
 
-<p>📞 Mobile: +91 9369194438</p>
+  <p>📸 Shree Digital Studio Mahrouni</p>
 
-<p>📍 Location:Mahrouni Lalitpur Uttar Pradesh 284405</p>
+</section>
 
-<p>📸 Shree Digital Studio Mahrouni</p>
 
-</div>
+<!-- FEEDBACK -->
 <div class="feedback-box">
+
   <h3>💬 Give Us Your Feedback</h3>
 
-  <input type="text" id="feedbackName" placeholder="Your Name">
+  <input
+    type="text"
+    id="feedbackName"
+    placeholder="Your Name"
+  >
 
-  <textarea id="feedbackMessage" placeholder="Write your feedback..." rows="4"></textarea>
+  <textarea
+    id="feedbackMessage"
+    placeholder="Write your feedback..."
+    rows="4"
+  ></textarea>
 
-  <button onclick="sendFeedback()">📩 Send Feedback</button>
+  <button onclick="sendFeedback()">
+    📩 Send Feedback
+  </button>
+
 </div>
 
+
+<!-- FEEDBACK SCRIPT -->
 <script>
 function sendFeedback() {
-  const name = document.getElementById("feedbackName").value;
-  const message = document.getElementById("feedbackMessage").value;
+
+  const name =
+    document.getElementById("feedbackName").value.trim();
+
+  const message =
+    document.getElementById("feedbackMessage").value.trim();
 
   if (!name || !message) {
     alert("Please enter your name and feedback.");
     return;
   }
 
-  const text = `Feedback from Shree Digital Studio Website%0AName: ${name}%0AFeedback: ${message}`;
+  const text =
+    `📸 *SHREE DIGITAL STUDIO - FEEDBACK*
 
-  window.open(
-    "https://wa.me/919369194438?text=" + text,
-    "_blank"
-  );
+👤 Name: ${name}
+
+💬 Feedback:
+${message}`;
+
+  const whatsappURL =
+    "https://wa.me/919369194438?text=" +
+    encodeURIComponent(text);
+
+  window.open(whatsappURL, "_blank");
 }
 </script>
-  
-<!-- Social Media Icons -->
+
+
+<!-- SOCIAL MEDIA ICONS -->
 <div class="social-icons">
 
-  <a href="https://www.facebook.com/share/19gSR8ERKt/"
-     target="_blank" aria-label="Facebook" class="facebook">
+  <a
+    href="https://www.facebook.com/share/19gSR8ERKt/"
+    target="_blank"
+    aria-label="Facebook"
+    class="facebook"
+  >
     <i class="fab fa-facebook-f"></i>
   </a>
 
-  <a href="https://youtube.com/@shreedigitalstudiomahroni-k3z"
-     target="_blank" aria-label="YouTube" class="youtube">
+  <a
+    href="https://youtube.com/@shreedigitalstudiomahroni-k3z"
+    target="_blank"
+    aria-label="YouTube"
+    class="youtube"
+  >
     <i class="fab fa-youtube"></i>
   </a>
 
-  <a href="https://www.instagram.com/shree_digital_studio1/"
-     target="_blank" aria-label="Instagram" class="instagram">
+  <a
+    href="https://www.instagram.com/shree_digital_studio1/"
+    target="_blank"
+    aria-label="Instagram"
+    class="instagram"
+  >
     <i class="fab fa-instagram"></i>
   </a>
 
-  <a href="https://wa.me/919369194438"
-     target="_blank" aria-label="WhatsApp" class="whatsapp">
+  <a
+    href="https://wa.me/919369194438"
+    target="_blank"
+    aria-label="WhatsApp"
+    class="whatsapp"
+  >
     <i class="fab fa-whatsapp"></i>
   </a>
-<footer>
 
-© 2026 <span>Shree Digital Studio Mahrouni</span> — All Rights Reserved
-</body>
-</html>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+  © 2026
+  <span>Shree Digital Studio Mahrouni</span>
+  — All Rights Reserved
+</footer>
 ```
