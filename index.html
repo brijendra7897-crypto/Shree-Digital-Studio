@@ -1660,44 +1660,6 @@ function likePhoto(button) {
 }
 </div>
   
-<script>
-function sendBookingToWhatsApp(event) {
-  event.preventDefault();
-
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
-  const location = document.getElementById("location").value;
-  const packageName = document.getElementById("packageName").value;
-  const date = document.getElementById("date").value;
-  const customerMessage = document.getElementById("customerMessage").value;
-
-  // Shree Digital Studio WhatsApp Number
-  const whatsappNumber = "919369194438";
-
-  const message = `📸 SHREE DIGITAL STUDIO
-
-📋 BOOKING REQUEST
-
-👤 Customer Name: ${name}
-📞 Mobile Number: ${phone}
-📍 Event Location: ${location}
-📦 Package: ${packageName}
-📅 Event Date: ${date}
-
-💬 Customer Message:
-${customerMessage || "No message"}
-
-💰 Minimum Advance: ₹3,000`;
-
-  const whatsappURL =
-    "https://wa.me/" + 9369194438
-    whatsappNumber +
-    "?text=" +
-    encodeURIComponent(message);
-
-  window.open(whatsappURL "https://wa.me/919369194438"_blank");
-}
-</script>
 <!-- CONTACT -->
 
 <section class="contact">
