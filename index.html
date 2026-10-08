@@ -1773,49 +1773,8 @@ footer span {
     📞 +91 9369194438 &nbsp; | &nbsp;
     💍 Wedding Photography &nbsp; | &nbsp;
     🎥 Cinematic Video
-  </div>
+
 </div>
-
-
-<!-- BOOKING FORM SCRIPT -->
-<script>
-document.getElementById("bookingForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const location = document.getElementById("location").value.trim();
-  const packageName = document.getElementById("packageName").value;
-  const date = document.getElementById("date").value;
-  const customerMessage = document.getElementById("customerMessage").value.trim();
-
-  const whatsappNumber = "919369194438";
-
-  const message = `📸 *SHREE DIGITAL STUDIO*
-
-📋 *NEW BOOKING REQUEST*
-
-👤 Customer Name: ${name}
-📞 Mobile Number: ${phone}
-📍 Event Location: ${location}
-📦 Package: ${packageName}
-📅 Event Date: ${date}
-
-💬 Customer Message:
-${customerMessage || "No message"}
-
-💰 Minimum Advance: ₹3,000`;
-
-  const whatsappURL =
-    "https://wa.me/" +
-    whatsappNumber +
-    "?text=" +
-    encodeURIComponent(message);
-
-  window.open(whatsappURL, "_blank");
-});
-</script>
-
 
 <!-- CONTACT -->
 <section class="contact">
@@ -1876,10 +1835,8 @@ function sendFeedback() {
     `📸 *SHREE DIGITAL STUDIO - FEEDBACK*
 
 👤 Name: ${name}
-
 💬 Feedback:
 ${message}`;
-
   const whatsappURL =
     "https://wa.me/919369194438?text=" +
     encodeURIComponent(text);
