@@ -1664,181 +1664,8 @@ function likePhoto(button) {
 }
 </style>
 </section>
-
-    <!-- ================= BOOKING SECTION ================= -->
-<section id="booking" class="booking-section">
-
-  <div class="booking-box">
-
-    <h2>📸 Booking Details</h2>
-    <p class="advance-text">
-      Minimum Advance: <strong>₹3,000</strong>
-    </p>
-
-    <form id="bookingForm">
-
-      <!-- Customer Name -->
-      <label>👤 Customer Name</label>
-      <input
-        type="text"
-        id="name"
-        placeholder="Enter your name"
-        required
-      >
-
-      <!-- Mobile Number -->
-      <label>📞 Mobile Number</label>
-      <input
-        type="tel"
-        id="phone"
-        name="phone"
-        placeholder="Enter 10 digit mobile number"
-        inputmode="numeric"
-        pattern="[0-9]{10}"
-        maxlength="10"
-        minlength="10"
-        required
-      >
-
-      <!-- Event Location -->
-      <label>📍 Event Location</label>
-      <input
-        type="text"
-        id="location"
-        placeholder="Enter event location"
-        required
-      >
-
-      <!-- Package -->
-      <select id="packageName" required>
-  <option value="">Select Package</option>
-  <option value="Silver">Silver</option>
-  <option value="Royal">Royal</option>
-  <option value="Royal Premium">Royal Premium</option>
-</select>
-      <!-- Event Date -->
-      <label>📅 Event Date</label>
-      <input
-        type="date"
-        id="date"
-        required
-      >
-
-      </select>
-
-      <!-- Customer Message -->
-      <label>💬 Customer Message</label>
-      <textarea
-        id="customerMessage"
-        rows="4"
-        placeholder="Write your requirement..."
-      ></textarea>
-
-      <!-- Submit -->
-      <button type="submit" class="booking-btn">
-        📲 Send Booking Request
-      </button>
-
-    </form>
-
-  </div>
-
-</section>
-
-
-<!-- ================= BOOKING CSS ================= -->
-<style>
-
-.booking-section {
-  padding: 60px 20px;
-  background: #0b0b0b;
-}
-
-.booking-box {
-  max-width: 600px;
-  margin: auto;
-  background: #111;
-  padding: 30px;
-  border-radius: 22px;
-  border: 1px solid #333;
-  box-shadow: 0 0 25px rgba(255, 193, 7, 0.08);
-}
-
-.booking-box h2 {
-  text-align: center;
-  color: #fff;
-  font-size: 30px;
-  margin-bottom: 5px;
-}
-
-.advance-text {
-  text-align: center;
-  color: #aaa;
-  margin-bottom: 25px;
-  font-size: 18px;
-}
-
-.advance-text strong {
-  color: #ffc107;
-}
-
-.booking-box label {
-  display: block;
-  color: #fff;
-  font-size: 15px;
-  margin: 15px 0 7px;
-}
-
-.booking-box input,
-.booking-box select,
-.booking-box textarea {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 15px;
-  border-radius: 14px;
-  border: 1px solid #444;
-  background: #1b1b1b;
-  color: #fff;
-  font-size: 16px;
-  outline: none;
-}
-
-.booking-box input:focus,
-.booking-box select:focus,
-.booking-box textarea:focus {
-  border-color: #ffc107;
-  box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.15);
-}
-
-.booking-box textarea {
-  resize: vertical;
-}
-
-.booking-btn {
-  width: 100%;
-  margin-top: 25px;
-  padding: 16px;
-  border: none;
-  border-radius: 14px;
-  background: #25D366;
-  color: #fff;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.booking-btn:hover {
-  opacity: 0.9;
-}
-
-</style>
-
-
-<!-- ================= BOOKING JAVASCRIPT ================= -->
 <script>
-
 document.getElementById("bookingForm").addEventListener("submit", function(e) {
-
   e.preventDefault();
 
   const name = document.getElementById("name").value.trim();
@@ -1846,72 +1673,37 @@ document.getElementById("bookingForm").addEventListener("submit", function(e) {
   const location = document.getElementById("location").value.trim();
   const packageName = document.getElementById("packageName").value;
   const date = document.getElementById("date").value;
-  const paymentStatus = document.getElementById("paymentStatus").value;
-  const customerMessage =
-    document.getElementById("customerMessage").value.trim();
+  const customerMessage = document.getElementById("customerMessage").value.trim();
 
-  // Mobile Number Validation
-  if (!/^[0-9]{10}$/.test(phone)) {
-    alert("Please enter a valid 10 digit mobile number.");
-    return;
-  }
-
-  // Generate Booking ID
-  const bookingId =
-    "SDS-" + Date.now().toString().slice(-6);
-
-  // Convert Date
-  const eventDate = new Date(date);
-
-  const formattedDate =
-    eventDate.toLocaleDateString("en-IN", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    });
-
-  // Customer message
-  const message =
-    "📸 *SHREE DIGITAL STUDIO MAHROUNI*\n" +
-    "━━━━━━━━━━━━━━━━━━\n\n" +
-
-    "🔔 *NEW BOOKING REQUEST*\n\n" +
-
-    "🆔 *Booking ID:* " + bookingId + "\n" +
-    "👤 *Customer Name:* " + name + "\n" +
-    "📞 *Mobile Number:* " + phone + "\n" +
-    "📍 *Event Location:* " + location + "\n" +
-    "📦 *Selected Package:* " + packageName + "\n" +
-    "📅 *Event Date:* " + formattedDate + "\n\n" +
-
-    "💰 *Minimum Advance:* ₹3,000\n" +
-    "💳 *Payment Status:* " + paymentStatus + "\n\n" +
-
-    "💬 *Customer Message:*\n" +
-    (customerMessage || "No message provided") + "\n\n" +
-
-    "━━━━━━━━━━━━━━━━━━\n" +
-    "🙏 Thank you for choosing\n" +
-    "*Shree Digital Studio Mahrouni* 📸";
-
-  // Your WhatsApp Number
+  // WhatsApp Number
   const whatsappNumber = "919369194438";
+
+  // Booking Message
+  const message =
+`📸 *SHREE DIGITAL STUDIO - BOOKING REQUEST*
+
+👤 *Customer Name:* ${name}
+📞 *Mobile Number:* ${phone}
+📍 *Event Location:* ${location}
+📦 *Package:* ${packageName}
+📅 *Event Date:* ${date}
+
+💬 *Customer Message:*
+${customerMessage || "No additional message"}
+
+💰 *Minimum Advance:* ₹3,000
+
+Thank you for choosing *Shree Digital Studio* 📸`;
 
   // WhatsApp URL
   const whatsappURL =
-    "https://wa.me/" +91 9369194438
-    whatsappNumber +91 9369194438
-    "?text=" +91 9369194438
-    encodeURIComponent(message);
+    "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
 
   // Open WhatsApp
   window.open(whatsappURL, "_blank");
-
 });
-
-</script>  
-
-    
+</script>
+  
 <!-- CONTACT -->
 
 <section class="contact">
